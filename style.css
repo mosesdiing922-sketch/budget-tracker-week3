@@ -1,0 +1,260 @@
+/* =========================================================
+   My Budget Tracker - Week 3: Visual design
+   Palette: forest green + warm amber on a soft sage background
+   Fonts:   Merriweather (headings) + Inter (body)
+   ========================================================= */
+
+/* ---------- Color palette & fonts as CSS variables ---------- */
+:root {
+  --bg:         #eef3ef;   /* page background (soft sage)   */
+  --card:       #ffffff;   /* card surfaces                 */
+  --primary:    #1f5c47;   /* forest green: headings, table header, buttons */
+  --primary-dark: #174535; /* darker green for hover        */
+  --accent:     #e8a33d;   /* amber: highlights, focus      */
+  --text:       #22302a;   /* body text                     */
+  --muted:      #5f6f66;   /* secondary text                */
+  --border:     #cddbd2;   /* borders                       */
+  --row-alt:    #f1f7f3;   /* alternating table rows        */
+  --row-hover:  #fbecd0;   /* table row hover (light amber) */
+
+  --font-heading: 'Merriweather', Georgia, serif;
+  --font-body:    'Inter', Arial, Helvetica, sans-serif;
+
+  --radius: 14px;
+}
+
+/* ---------- Box model basics ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 24px 16px 0 16px;
+}
+
+/* ---------- Typography ---------- */
+h1, h2 {
+  font-family: var(--font-heading);
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  margin: 0 0 8px 0;
+}
+
+h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 0 16px 0;
+  padding-bottom: 10px;
+  border-bottom: 3px solid var(--accent);
+}
+
+/* Form controls don't inherit fonts by default, so set them */
+input,
+select,
+button,
+label,
+table {
+  font-family: var(--font-body);
+}
+
+/* ---------- Cards: header, form, table, video, help ---------- */
+header,
+main,
+footer {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header,
+.card,
+.help {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+/* Page heading card */
+header {
+  background-color: var(--primary);
+  border-color: var(--primary-dark);
+  border-bottom: 6px solid var(--accent);
+  color: #ffffff;
+  text-align: center;
+}
+
+header img {
+  display: block;
+  margin: 0 auto 12px auto;
+}
+
+.tagline {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #dcece3;
+}
+
+main {
+  padding: 0;
+}
+
+/* ---------- Add Expense form ---------- */
+#add-expense {
+  border-top: 6px solid var(--primary);
+}
+
+#expense-form > label {
+  display: block;
+  margin: 14px 0 6px 0;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+input,
+select {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1rem;
+  color: var(--text);
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+/* every input except the date one gets the same border treatment */
+input:not([type="date"]) {
+  border: 1px solid var(--border);
+}
+
+input[type="date"],
+select {
+  border: 1px solid var(--border);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(232, 163, 61, 0.3);
+}
+
+button {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--primary);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--primary-dark);
+}
+
+/* ---------- Expense table ---------- */
+#expense-list {
+  border-top: 6px solid var(--accent);
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;      /* lets the rounded corners show */
+  border-spacing: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+thead th {
+  background-color: var(--primary);
+  color: #ffffff;
+  font-weight: 600;
+  border-bottom: 3px solid var(--accent);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+#expense-list td {
+  font-size: 0.95rem;
+}
+
+/* Amount column (2nd column) lined up on the right */
+th:nth-child(2),
+td:nth-child(2) {
+  text-align: right;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--row-alt);
+}
+
+tbody tr:hover {
+  background-color: var(--row-hover);
+}
+
+/* ---------- Help (details/summary) ---------- */
+.help {
+  padding: 16px 24px;
+}
+
+.help summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.help p {
+  margin: 12px 0 0 0;
+  color: var(--muted);
+}
+
+/* ---------- Video card ---------- */
+#video-section {
+  border-top: 6px solid var(--primary);
+}
+
+iframe {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  text-align: center;
+  padding: 16px 0 32px 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+footer p {
+  margin: 0;
+}
